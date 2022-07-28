@@ -13,7 +13,7 @@ export default class Databinding extends Component {
     return (
       <div className="card">
         <img src={this.product.img} alt="..." />
-        <div className="card-body bd-dark text-white">
+        <div className="card-body bd-dark text-dark">
           <p>{this.product.name}</p>
           <p>{this.product.price}</p>
         </div>
@@ -45,6 +45,7 @@ export default class Databinding extends Component {
           Binding gọi hàm: chỗ gọi hàm sẽ hiển thị những gì mà hàm đó return. cú
           pháp: {`goiHam()`}
         </h3>
+
         {renderText('Bootcamp28')}
         <hr />
         <h3>

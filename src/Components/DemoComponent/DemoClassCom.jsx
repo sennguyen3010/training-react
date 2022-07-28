@@ -7,7 +7,7 @@ export default class DemoClassCom extends Component {
   render() {
     return (
       <div>
-        <div className="card text-white bg-primary">
+        <div className="card text-white bg-secondary">
           <img className="card-img-top" src="holder.js/100px180/" alt="Title" />
           <div className="card-body">
             <h4 className="card-title">Title</h4>
