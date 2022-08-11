@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 export default class TableProduct extends Component {
   render() {
+    let { arrProduct, delProduct } = this.props;
     return (
       <table className="table">
         <thead>
@@ -16,7 +17,31 @@ export default class TableProduct extends Component {
           </tr>
         </thead>
         <tbody>
-            
+          {arrProduct.map((pro, index) => {
+            return (
+              <tr key={index}>
+                <td>{pro.id}</td>
+                <td>
+                  <img src={pro.img} alt="..." width={50} />
+                </td>
+                <td>{pro.name}</td>
+                <td>{pro.price}</td>
+                <td>{pro.type}</td>
+                <td>{pro.description}</td>
+                <td>
+                  <button
+                    onClick={() => {
+                      delProduct(pro.id);
+                    }}
+                    className="btn btn-danger mx-2"
+                  >
+                    Del
+                  </button>
+                  <button className="btn btn-primary mx-2">Edit</button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     );

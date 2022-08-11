@@ -64,6 +64,16 @@ function App() {
                 React Form
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'nav-link bg-light text-dark' : 'nav-link'
+                }
+                to="/lifecycle"
+              >
+                Lifecycle
+              </NavLink>
+            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"

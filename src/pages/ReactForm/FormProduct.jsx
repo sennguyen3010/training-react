@@ -50,7 +50,7 @@ export default class FormProduct extends Component {
         error: newError,
       },
       () => {
-        console.log(this.state);
+        // console.log(this.state);
       }
     );
   };
@@ -59,6 +59,9 @@ export default class FormProduct extends Component {
     //chặn sự kiện reload của browser
     event.preventDefault();
     console.log(this.state);
+
+    //khi người dùng bấm nút submit => gửi dữ liệu người dùng nhập từ state => ra hàm addProduct
+    this.props.addProduct(this.state.productInfo);
   };
 
   render() {
