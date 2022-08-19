@@ -74,6 +74,7 @@ function App() {
                 Lifecycle
               </NavLink>
             </li>
+
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -83,15 +84,22 @@ function App() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Dropdown
+                Redux
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdownId">
-                <a className="dropdown-item" href="#">
-                  Action 1
-                </a>
-                <a className="dropdown-item" href="#">
-                  Action 2
-                </a>
+                <NavLink className="dropdown-item" href="#" to="/demonumber">
+                  Demo number
+                </NavLink>
+                <NavLink className="dropdown-item" href="#" to="/demochonxe">
+                  Demo chọn xe
+                </NavLink>
+                <NavLink
+                  className="dropdown-item"
+                  href="#"
+                  to="/demoformcomment"
+                >
+                  Demo comment
+                </NavLink>
               </div>
             </li>
           </ul>

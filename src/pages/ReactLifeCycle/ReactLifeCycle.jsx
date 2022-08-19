@@ -7,14 +7,19 @@ export default class ReactLifeCycle extends Component {
     this.state = {
       number: 1,
       like: 1,
+      objectNumber: {
+        number: 1,
+      },
+      count: 60,
     };
+    console.log('constructor');
   }
 
   static getDerivedStateFromProps(newProps, currentState) {
     console.log('getDerivedStateFromProps');
     // currentState.number = 20;
     //return về state mới, nếu giữ state cũ thì return null
-    // return currentState
+    // return currentState;
     return null;
   }
 
@@ -28,12 +33,15 @@ export default class ReactLifeCycle extends Component {
 
     return (
       <div className="container">
-        <h3>Number: {this.state.number} </h3>
+        <h3>Number: {this.state.objectNumber.number} </h3>
         <button
           className="btn btn-success"
           onClick={() => {
+            let objectNumber = { ...this.state.objectNumber };
+            objectNumber.number += 1;
+
             this.setState({
-              number: this.state.number + 1,
+              objectNumber: objectNumber,
             });
           }}
         >
@@ -50,14 +58,37 @@ export default class ReactLifeCycle extends Component {
         >
           Like
         </button>
-        <Child number={this.state.number} />
+        <Child obNumber={this.state.objectNumber} />
+        <br />
+        count: {this.state.count}
       </div>
     );
   }
-
+  timeout = {};
   componentDidMount() {
     console.log('componentdidmount');
     //tương tự window.onload
+    //chỉ chạy 1 lần khi component load lần đầu tiên
+
+    this.timeout = setInterval(() => {
+      this.setState({
+        count: this.state.count - 1,
+      });
+
+      console.log(this.state.count);
+    }, 1000);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // handle sau khi component gọi render
+    // tuy nhiên hạn chế setState tại đây => setState phải có lệnh if
+    console.log(prevProps);
+    console.log(prevState);
+  }
+
+  componentWillUnmount() {
+    //trước khi component mất khỏi giao diện => clear tất cả script chạy ngầm
+    clearInterval(this.timeout);
   }
 }
 
@@ -66,7 +97,7 @@ export default class ReactLifeCycle extends Component {
  + Mouting: 
    + các hàm sẽ tự kích hoạt khi sử dụng 1 component. 
    dùng để can thiệp vào quá trình trước or sau khi render nhầm mục đích xử lý state và props
-   + can thiệp thay đổi state trước render (sử dụng getDriveStateFromProps)
+   + can thiệp thay đổi state trước render (sử dụng getDerivedStateFromProps)
    + can thiệp thay đổi state sau render sử dụng componentDidMount()
    + componentDiDMount chỉ chạy 1 lần duy nhất khi component load lần đầu tiên (thường dùng để call api)
 

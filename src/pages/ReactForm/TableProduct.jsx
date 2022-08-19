@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class TableProduct extends Component {
   render() {
-    let { arrProduct, delProduct } = this.props;
+    let { arrProduct, delProduct, editProduct } = this.props;
     return (
       <table className="table">
         <thead>
@@ -37,7 +37,14 @@ export default class TableProduct extends Component {
                   >
                     Del
                   </button>
-                  <button className="btn btn-primary mx-2">Edit</button>
+                  <button
+                    className="btn btn-primary mx-2"
+                    onClick={() => {
+                      editProduct(pro);
+                    }}
+                  >
+                    Edit
+                  </button>
                 </td>
               </tr>
             );

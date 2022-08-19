@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FormProduct from './FormProduct';
 import TableProduct from './TableProduct';
+import axios from 'axios';
 
 export default class ReactForm extends Component {
   state = {
@@ -22,6 +23,35 @@ export default class ReactForm extends Component {
         type: 'tablet',
       },
     ],
+    productEdit: {
+      id: '',
+      name: '',
+      price: 0,
+      img: '',
+      description: '',
+      productType: '',
+    },
+  };
+
+  updateProduct = (proUpdate) => {
+    let prod = this.state.arrProduct.find((p) => p.id == proUpdate.id);
+    if (prod) {
+      prod.name = proUpdate.name;
+      prod.price = proUpdate.price;
+      prod.img = proUpdate.img;
+      prod.description = proUpdate.description;
+      prod.productType = proUpdate.productType;
+    }
+    //set lai state
+    this.setState({
+      arrProduct: this.state.arrProduct,
+    });
+  };
+
+  editProduct = (proClick) => {
+    this.setState({
+      productEdit: proClick,
+    });
   };
 
   addProduct = (newProduct) => {
@@ -65,10 +95,15 @@ export default class ReactForm extends Component {
     return (
       <div className="container">
         <h3>Product management</h3>
-        <FormProduct addProduct={this.addProduct} />
+        <FormProduct
+          addProduct={this.addProduct}
+          productEdit={this.state.productEdit}
+          updateProduct={this.updateProduct}
+        />
         <TableProduct
           arrProduct={this.state.arrProduct}
           delProduct={this.delProduct}
+          editProduct={this.editProduct}
         />
       </div>
     );
@@ -76,8 +111,21 @@ export default class ReactForm extends Component {
 
   componentDidMount() {
     //hàm này sẽ thực thi sau khi nội dung dc render
-    this.setState({
-      arrProduct: this.layStore(),
+    // this.setState({
+    //   arrProduct: this.layStore(),
+    // });
+
+    let promise = axios({
+      url: 'http://svcy.myclass.vn/api/Product/GetAll',
+      method: 'GET',
+    });
+    promise.then((result) => {
+      this.setState({
+        arrProduct: result.data,
+      });
+    });
+    promise.catch((err) => {
+      console.log(err);
     });
   }
 }

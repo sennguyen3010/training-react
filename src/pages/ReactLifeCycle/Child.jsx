@@ -12,6 +12,8 @@ import React, { Component, PureComponent } from 'react';
 
 export default class Child extends PureComponent {
   constructor(props) {
+    console.log('constructor child');
+
     super(props);
     this.state = {};
   }
@@ -37,7 +39,9 @@ export default class Child extends PureComponent {
     return (
       <div className="container">
         <div className="p-5 display-4 bg-dark">
-          <h2 className="text-white">Child component: {this.props.number}</h2>
+          <h2 className="text-white">
+            Child component: {this.props.obNumber.number}
+          </h2>
         </div>
       </div>
     );
@@ -46,4 +50,6 @@ export default class Child extends PureComponent {
   componentDidMount() {
     console.log('componentdidmount child');
   }
+
+  componentDidUpdate(prevProps, prevState) {}
 }
