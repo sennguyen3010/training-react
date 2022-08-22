@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.scss';
+import './assets/scss/styles.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 // setup redux
@@ -18,6 +18,7 @@ import ReactLifeCycle from './pages/ReactLifeCycle/ReactLifeCycle';
 import DemoTangGiamSL from './pages/DemoRedux/DemoTangGiamSL/DemoTangGiamSL';
 import DemoChonXe from './pages/DemoRedux/DemoChonXe/DemoChonXe';
 import DemoFormComment from './pages/DemoRedux/DemoFormComment/DemoFormComment';
+import DemoBurger from './pages/DemoRedux/DemoBurger/DemoBurger';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -34,6 +35,7 @@ root.render(
           <Route path="demonumber" element={<DemoTangGiamSL />}></Route>
           <Route path="demochonxe" element={<DemoChonXe />}></Route>
           <Route path="demoformcomment" element={<DemoFormComment />}></Route>
+          <Route path="demoburger" element={<DemoBurger />}></Route>
 
           {/* <Route path="*" element={<Page404 />}></Route> */}
           <Route path="*" element={<Navigate to="" />}></Route>

@@ -100,6 +100,10 @@ function App() {
                 >
                   Demo comment
                 </NavLink>
+
+                <NavLink className="dropdown-item" href="#" to="/demoburger">
+                  Demo burger
+                </NavLink>
               </div>
             </li>
           </ul>

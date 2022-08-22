@@ -20,9 +20,41 @@ class TableComment extends Component {
                   alt=""
                 />
               </div>
-              <div className="col-8 bg-secondary rounded">
+              <div
+                className="col-8 bg-secondary rounded"
+                style={{ background: 'rgba(0,0,0,0.1)', padding: 15 }}
+              >
                 <h5>{comment.name}</h5>
                 <p>{comment.content}</p>
+                <div style={{ textAlign: 'right' }}>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      //tao action xoa
+                      const action = {
+                        type: 'DELETE_COMMENT',
+                        payload: index,
+                      };
+                      this.props.dispatch(action);
+                    }}
+                  >
+                    Xoá
+                  </button>
+
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      //tao action sua
+                      const action = {
+                        type: 'EDIT_COMMENT',
+                        payload: index,
+                      };
+                      this.props.dispatch(action);
+                    }}
+                  >
+                    Sửa
+                  </button>
+                </div>
               </div>
             </div>
           );

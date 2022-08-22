@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 class FormComment extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
+    //gửi dữ liệu lên redux
+    const action = {
+      type: 'HANDLE_SUBMIT',
+      payload: this.props.commentInfo,
+    };
+    this.props.dispatch(action);
   };
   handleChange = (e) => {
     const { id, value } = e.target;
@@ -18,7 +24,6 @@ class FormComment extends Component {
     this.props.dispatch(action);
   };
   render() {
-    console.log(this.props);
     let { name, content } = this.props.commentInfo;
     return (
       <form onSubmit={this.handleSubmit}>
@@ -42,6 +47,18 @@ class FormComment extends Component {
         </div>
         <div className="form-group mt-2">
           <button className="btn btn-success">Comment</button>
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={() => {
+              const action = {
+                type: 'UPDATE_COMMENT',
+              };
+              this.props.dispatch(action);
+            }}
+          >
+            Update
+          </button>
         </div>
       </form>
     );
